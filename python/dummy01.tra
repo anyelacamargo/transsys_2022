@@ -1,0 +1,58 @@
+transsys Transsys_Model1
+// topology: random_powerlaw
+// n: 2
+// num_edges: 2
+// power_exp: 2
+// power_base: 3
+// topology: end
+// constitutive: 0.1
+// km_activation: 0.2
+// km_repression: 0.3
+// vmax_activation: 1.4
+// vmax_repression: 2.5
+// decay: 0.8
+// diffusibility: 0.1
+// rndseed: 1
+// 
+// serial #1
+{
+  factor f0000
+  {
+    decay: 0.8;
+    diffusibility: 0.1;
+    synthesis: 0.1;
+  }
+
+  factor f0001
+  {
+    decay: 0.8;
+    diffusibility: 0.1;
+    synthesis: 0.1;
+  }
+
+  gene g0000
+  {
+    promoter
+    {
+      constitutive: 0.1;
+      f0001: repress(0.3, 2.5);
+      f0000: repress(0.3, 2.5);
+    }
+    product
+    {
+      default: f0000;
+    }
+  }
+
+  gene g0001
+  {
+    promoter
+    {
+      constitutive: 0.1;
+    }
+    product
+    {
+      default: f0001;
+    }
+  }
+}

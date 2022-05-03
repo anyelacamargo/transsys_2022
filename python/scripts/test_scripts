@@ -1,0 +1,29 @@
+#!/bin/sh
+
+# script to test whether running the python scripts results in an
+# exit code of 0 (indicating success). These tests are intended to
+# pick up changes in the python modules require changes in the scripts
+# etc.; they are not intended as a thorough test of the scripts.
+
+# $Id$
+# $Revision$
+# $Author$
+# $Date$
+
+
+runcmd ()
+{
+  cmd=$*
+  echo $cmd
+  if $cmd ; then
+    true
+  else
+    echo exit $?
+    exit 1
+  fi
+}
+
+
+runcmd ./transopt -f squaresum -P transopt_test_sa.txt -x transopt_test_obj.txt -r 1 -L transopt_test_sa_out.dat transopt_test.tra transopt_test_sa_out.tra
+runcmd ./transopt -f squaresum -P transopt_test_grad.txt -x transopt_test_obj.txt -r 1 -L transopt_test_grad_out.dat transopt_test.tra transopt_test_grad_out.tra
+
